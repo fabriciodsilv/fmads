@@ -46,7 +46,6 @@ tableHTML__sinfat_plugin += 		'<th>Descrição</th>';
 tableHTML__sinfat_plugin += 		'<th>Processo</th>';
 tableHTML__sinfat_plugin += 		'<th>Porte</th>';
 tableHTML__sinfat_plugin += 		'<th>Potencial poluidor</th>';
-tableHTML__sinfat_plugin += 		'<th>Razão Social</th>';
 tableHTML__sinfat_plugin += 		'<th>Tipo da Licença</th>';
 tableHTML__sinfat_plugin += 	'</tr>';
 tableHTML__sinfat_plugin += 	'<tr>';
@@ -58,7 +57,6 @@ tableHTML__sinfat_plugin += 		'<td><input type="text" onkeyup="filter(event, 4)"
 tableHTML__sinfat_plugin += 		'<td><input type="text" onkeyup="filter(event, 5)" placeholder="Procurar Número do processo"></td>';
 tableHTML__sinfat_plugin += 		'<td><input type="text" onkeyup="filter(event, 6)" placeholder="Procurar Porte"></td>';
 tableHTML__sinfat_plugin += 		'<td><input type="text" onkeyup="filter(event, 7)" placeholder="Procurar Potencial poluidor"></td>';
-tableHTML__sinfat_plugin += 		'<td><input type="text" onkeyup="filter(event, 8)" placeholder="Procurar Razão Social"></td>';
 tableHTML__sinfat_plugin += 		'<td><input type="text" onkeyup="filter(event, 9)" placeholder="Procurar Tipo da Licença"></td>';
 tableHTML__sinfat_plugin += 	'</tr>';
 
@@ -74,7 +72,6 @@ for (var i=0; i < _sinfat_plugin_IDs.length; i++){
 	tableHTML__sinfat_plugin += 	'<td>' + feature.properties['Número do'] + '</td>';
 	tableHTML__sinfat_plugin += 	'<td>' + feature.properties['Porte do E'] + '</td>';
 	tableHTML__sinfat_plugin += 	'<td>' + feature.properties['Potencial'] + '</td>';
-	tableHTML__sinfat_plugin += 	'<td>' + feature.properties['Razão Soc'] + '</td>';
 	tableHTML__sinfat_plugin += 	'<td>' + feature.properties['Tipo da Li'] + '</td>';
 	tableHTML__sinfat_plugin += '</tr>';
 }

@@ -157,8 +157,6 @@ var _sinfat_plugin = L.geoJSON(_sinfat_plugin_data, {
 				layer.on({click: clickedFeature});
 				layer.bindPopup(function (layer) {
 					return '<h4></h4>'  +
-							'<b>RAZÃO SOCIAL:</b>&ensp;' + feature.properties['Razão Soc'] + '<br/>' +
-							'<b>CNPJ:</b>&ensp;' + feature.properties['CNPJ do Em'] + '<br/>' +	
 							'<b>FCEI:</b>&ensp;' + feature.properties['Código do'] + '<br/>' +
 							'<b>PROCESSO:</b>&ensp;' + feature.properties['Número do'] + '<br/>' + '<br/>' +							
 							'<b>CÓDIGO CONSEMA:</b>&ensp;' + feature.properties['Código CO'] + '<br/>' +
