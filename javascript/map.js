@@ -1,4 +1,12 @@
-var map = L.map('map', {});
+var map = L.map('map', 
+
+{
+  minZoom: 10,
+  maxZoom: 20,
+  center: [-27.595040, -48.613768],
+  zoom: 13
+}
+);
 
 // PAINEIS
 map.createPane('pane_0').style.zIndex = 499;
@@ -244,17 +252,3 @@ function layerOFF (event){
 
 map.on('overlayadd', layerON);
 map.on('overlayremove', layerOFF);
-
-// CALCULA A AREA QUE COBRE TODAS AS CAMADAS
-var bounds = {xmin: 180, ymin: 90, xmax: -180, ymax: -90};
-for (var layer in overlayMaps) {
-	var layerBounds = overlayMaps[layer].getBounds();
-	if (bounds.xmin > layerBounds.getSouthWest().lng) {bounds.xmin = layerBounds.getSouthWest().lng};
-	if (bounds.ymin > layerBounds.getSouthWest().lat) {bounds.ymin = layerBounds.getSouthWest().lat};
-	if (bounds.xmax < layerBounds.getNorthEast().lng) {bounds.xmax = layerBounds.getNorthEast().lng};
-	if (bounds.ymax < layerBounds.getNorthEast().lat) {bounds.ymax = layerBounds.getNorthEast().lat};
-}
-map.fitBounds([
-	[bounds.ymin, bounds.xmin],
-	[bounds.ymax, bounds.xmax]
-]);
