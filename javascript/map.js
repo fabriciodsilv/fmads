@@ -249,6 +249,3 @@ function layerOFF (event){
 		legendItems[i].style.display = 'none';
 	}
 }
-
-map.on('overlayadd', layerON);
-map.on('overlayremove', layerOFF);
