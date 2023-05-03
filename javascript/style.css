@@ -49,7 +49,7 @@ body {
 .mainTabContent {
     box-sizing: border-box;
     overflow: hidden;
-    height: 90vh;
+    height: 100%;
 }
 
 #map {
