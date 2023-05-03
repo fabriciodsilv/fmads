@@ -1,7 +1,5 @@
-var map = L.map('map', {});
+var map = L.map('map', {}).setView([-27.587121, -48.637876], 13);
 
-// PAINEIS
-map.createPane('pane_0').style.zIndex = 499;
 
 var baseMaps = {};
 var overlayMaps = {};
@@ -32,7 +30,7 @@ baseMaps["Google Hybrid"] = googleHybrid;
 
 // CAMADAS VETORIAIS
 var _sinfat_plugin = L.geoJSON(_sinfat_plugin_data, {
-			pointToLayer: function(geoJsonPoint, latlng) {return L.circleMarker(latlng, {pane: 'pane_0'})},
+			pointToLayer: function(geoJsonPoint, latlng) {return L.circleMarker(latlng)},
 			style: function (feature) {
 				if ( feature.properties["Tipo da Li"] == 'Ampliação LAI') {
 					return {
@@ -154,7 +152,6 @@ var _sinfat_plugin = L.geoJSON(_sinfat_plugin_data, {
 				} 
 			},
 			onEachFeature: function (feature, layer){
-				layer.on({click: clickedFeature});
 				layer.bindPopup(function (layer) {
 					return '<h4></h4>'  +
 							'<b>FCEI:</b>&ensp;' + feature.properties['Código do'] + '<br/>' +
@@ -178,16 +175,6 @@ var _sinfat_plugin = L.geoJSON(_sinfat_plugin_data, {
 			}
 }).addTo(map);
 overlayMaps['SINFAT (Jan/2022)'] = _sinfat_plugin;
-
-//Função que dá zoom sobre a feição clicada
-function clickedFeature(e) {
-	var feature = e.target;
-	if (feature.feature.geometry.type == 'Point' ) {
-		map.setView(feature.getLatLng(), 16);
-	} else {
-		map.fitBounds(feature.getBounds());
-	}
-}
 
 // LEGENDA
 var legend = L.control({position: 'bottomright'});
@@ -241,20 +228,3 @@ function layerOFF (event){
 		legendItems[i].style.display = 'none';
 	}
 }
-
-map.on('overlayadd', layerON);
-map.on('overlayremove', layerOFF);
-
-// CALCULA A AREA QUE COBRE TODAS AS CAMADAS
-var bounds = {xmin: 180, ymin: 90, xmax: -180, ymax: -90};
-for (var layer in overlayMaps) {
-	var layerBounds = overlayMaps[layer].getBounds();
-	if (bounds.xmin > layerBounds.getSouthWest().lng) {bounds.xmin = layerBounds.getSouthWest().lng};
-	if (bounds.ymin > layerBounds.getSouthWest().lat) {bounds.ymin = layerBounds.getSouthWest().lat};
-	if (bounds.xmax < layerBounds.getNorthEast().lng) {bounds.xmax = layerBounds.getNorthEast().lng};
-	if (bounds.ymax < layerBounds.getNorthEast().lat) {bounds.ymax = layerBounds.getNorthEast().lat};
-}
-map.fitBounds([
-	[bounds.ymin, bounds.xmin],
-	[bounds.ymax, bounds.xmax]
-]);
